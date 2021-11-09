@@ -219,17 +219,20 @@ class OSSTextObject extends OSSObject {
     required Uint8List bytes,
     required MediaType mediaType,
     String? uuid,
+    String? newName,
   }) {
     return OSSTextObject._(
       bytes: bytes,
       mediaType: mediaType,
       uuid: uuid,
+      newName: newName,
     );
   }
 
   factory OSSTextObject.fromFile({
     required File file,
     String? uuid,
+    String? newName,
   }) {
     String subtype = path.extension(file.path).toLowerCase();
     subtype = subtype.isNotEmpty ? subtype.replaceFirst('.', '') : '*';
@@ -238,6 +241,7 @@ class OSSTextObject extends OSSObject {
       bytes: file.readAsBytesSync(),
       mediaType: MediaType('text', subtype),
       uuid: uuid,
+      newName: newName,
     );
   }
 }
