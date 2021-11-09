@@ -203,3 +203,37 @@ class OSSVideoObject extends OSSObject {
     );
   }
 }
+/// * [length] 秒为单位
+class OSSTextObject extends OSSObject {
+  OSSTextObject._({
+    required Uint8List bytes,
+    required MediaType mediaType,
+    String? uuid,
+  }) : super._(bytes: bytes, mediaType: mediaType, uuid: uuid);
+
+  factory OSSTextObject.fromBytes({
+    required Uint8List bytes,
+    required MediaType mediaType,
+    String? uuid,
+  }) {
+    return OSSTextObject._(
+      bytes: bytes,
+      mediaType: mediaType,
+      uuid: uuid,
+    );
+  }
+
+  factory OSSTextObject.fromFile({
+    required File file,
+    String? uuid,
+  }) {
+    String subtype = path.extension(file.path).toLowerCase();
+    subtype = subtype.isNotEmpty ? subtype.replaceFirst('.', '') : '*';
+
+    return OSSTextObject._(
+      bytes: file.readAsBytesSync(),
+      mediaType: MediaType('text', subtype),
+      uuid: uuid,
+    );
+  }
+}
