@@ -44,6 +44,7 @@ abstract class OSSObject {
     required this.bytes,
     MediaType? mediaType,
     this.uuid,
+    this.newName
   }) : _mediaType = mediaType ?? MediaType('application', 'octet-stream');
 
   final Uint8List bytes;
@@ -57,6 +58,8 @@ abstract class OSSObject {
 
   int get length => bytes.lengthInBytes;
 
+  String? newName;
+
   String get type => _mediaType == MediaType('application', 'octet-stream')
       ? 'file'
       : _mediaType.type;
@@ -69,7 +72,7 @@ abstract class OSSObject {
         DateFormat('y/MM/dd').format(DateTime.now()),
       ].join('/');
 
-  String resourcePath(String? path) => '${path ?? folderPath}/$name';
+  String resourcePath(String? path) => '${path ?? folderPath}/${newName??name}';
 
   void uploadSuccessful(String url) {
     this.url = url;
@@ -209,7 +212,8 @@ class OSSTextObject extends OSSObject {
     required Uint8List bytes,
     required MediaType mediaType,
     String? uuid,
-  }) : super._(bytes: bytes, mediaType: mediaType, uuid: uuid);
+    String? newName,
+  }) : super._(bytes: bytes, mediaType: mediaType, uuid: uuid,newName: newName);
 
   factory OSSTextObject.fromBytes({
     required Uint8List bytes,
