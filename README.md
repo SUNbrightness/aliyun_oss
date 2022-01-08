@@ -59,5 +59,5 @@ Future<void> putTest(String filePath,String oosName) async{
 
 
 ### Example
-感谢打牢提供的认证及上传代码 https://github.com/lucky1213/aliyun_oss
-因改动太大我就不pull requet 了
+感谢大佬提供的认证及上传代码 https://github.com/lucky1213/aliyun_oss
+因改动太大我就不pull requets 了
