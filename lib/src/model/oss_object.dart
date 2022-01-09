@@ -24,4 +24,10 @@ class OSSObject {
   bool exist = true;
 
   List<OSSObject> childrenObject = [];
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return key+":"+childrenObject.toString();
+  }
 }
