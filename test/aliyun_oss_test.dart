@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:aliyun_oss_flutter2/aliyun_oss_flutter2.dart';
-import 'test_oss_info2.dart';
+import 'test_oss_info.dart';
 
 void main() async{
   //这里直接用子账号授权
